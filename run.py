@@ -13,4 +13,3 @@ selected.
 print("importing scripts...")
 from scripts import keyserver,client
 
-print("test")
