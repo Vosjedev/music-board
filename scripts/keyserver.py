@@ -31,13 +31,21 @@ def run():
             print("Exiting now with code 255.")
             return 255
 
+    os.system("cls" if os.name=='nt' else "clear") # clear the screen
+    
+    if isfile("CREDITS"): # if a credits file exists:
+        credits=open("CREDITS", 'r') # open CREDITS as read-only
+        credits=credits.read() # read the file
+        print("CREDITS:")
+        print(credits) # print the file
+    
     print("press escape twice to exit")
     while True:
         skip=False # set skip to false
         i=GetKeys() # read one letter
-        if i=='escape':
+        if i=='escape': # exit
             print("You pressed escape twice, exiting...")
-            return 0
+            return 0 # return exit code of 0
         # see if the file exists.
         if isfile(f"{i}.mp3"): # mp3
             sound=threading.Thread(target=playsound,args=[f"{i}.mp3"],daemon=True)
