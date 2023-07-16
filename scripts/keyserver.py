@@ -15,8 +15,9 @@ def run():
     import os,sys,threading
     from os.path import isfile
     from scripts import input
+    from scripts import status
     GetKeys=input.GetKeys
-    try:
+    try: # import playsound
         from playsound import playsound
     except ModuleNotFoundError:
         print("installing playsound using pip")
@@ -30,6 +31,24 @@ def run():
             print("If you think it did install correctly, please run me again, and this should not happen anymore.")
             print("Exiting now with code 255.")
             return 255
+    try: # import colorama
+        import colorama
+    except ModuleNotFoundError:
+        print("installing colorama using pip")
+        cmd="python3 -m pip install colorama"
+        print(cmd)
+        e=os.system(cmd)
+        if e==0:
+            import colorama
+        else:
+            print("command",cmd,"failed with code",str(e)+", assuming playsound did not install correctly.")
+            print("If you think it did install correctly, please run me again, and this should not happen anymore.")
+            print("Exiting now with code 255.")
+            return 255
+
+    # sys.setrecursionlimit(sys.getrecursionlimit()+100)
+
+    colorama.init()
 
     os.system("cls" if os.name=='nt' else "clear") # clear the screen
     
@@ -39,8 +58,16 @@ def run():
         print("CREDITS:")
         print(credits) # print the file
     
+    layer=1 # set layer to 1
+    folder=os.getcwd()
+    
     print("press escape twice to exit")
     while True:
+        
+        left=f"layer: {layer}"
+        right=f"folder: {folder}"
+        status.r(left=left,mid="|",right=right)
+        
         skip=False # set skip to false
         i=GetKeys() # read one letter
         if i=='escape': # exit
