@@ -2,9 +2,14 @@
 
 A soundboard working with your keyboard.
 
-You are on branch: dev
-at version       : dev-0.0.1_0.0.0
-latest commit    : 16-7-23 8:39 AM CEST
-
 Future plans:
- ( ) MIDI
+ - [ ] MIDI
+
+---
+
+DEVELOPER area
+*the following things only apply to dev branch. If you did not switch branches to dev, this should not be here. Please make sure you are on master. If you are, and this is here, make a new issue for it.*
+
+Dev branch todolist (sorted priority high->low)
+ - [ ] layer system
+ - [ ] build-in sample presets/examples
