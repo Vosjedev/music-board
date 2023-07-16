@@ -12,6 +12,6 @@ DEVELOPER area
 
 We are now working on beta-0.0.2
 Dev branch todolist (sorted priority high->low)
- - [ ] layer system
+ - [x] layer system
  - [x] read CREDITS file if present
  - [ ] build-in sample presets/examples

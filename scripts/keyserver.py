@@ -70,20 +70,37 @@ def run():
         
         skip=False # set skip to false
         i=GetKeys() # read one letter
+        i=str(i)
+        fname=f"layer{layer}/{i}" # compose a path using the layer number and the input letter
+        # see if the file exists.
+        if isfile(f"{fname}.mp3"): # mp3
+            sound=threading.Thread(target=playsound,args=[f"{fname}.mp3"],daemon=True)
+        elif isfile(f"{fname}.MP3"): # sometimes mp3 extention is MP3
+            sound=threading.Thread(target=playsound,args=[f"{fname}.MP3"],daemon=True)
+        elif isfile(f"{fname}.wav"): # wav
+            sound=threading.Thread(target=playsound,args=[f"{fname}.wav"],daemon=True)
+        elif isfile(f"{fname}.WAV"): # sometimes wav extention is WAV
+            sound=threading.Thread(target=playsound,args=[f"{fname}.WAV"],daemon=True)
+        else:
+            skip=True # ask to skip starting the thread, as no new thread was made
         if i=='escape': # exit
             print("You pressed escape twice, exiting...")
             return 0 # return exit code of 0
-        # see if the file exists.
-        if isfile(f"{i}.mp3"): # mp3
-            sound=threading.Thread(target=playsound,args=[f"{i}.mp3"],daemon=True)
-        elif isfile(f"{i}.MP3"): # sometimes mp3 extention is MP3
-            sound=threading.Thread(target=playsound,args=[f"{i}.MP3"],daemon=True)
-        elif isfile(f"{i}.wav"): # wav
-            sound=threading.Thread(target=playsound,args=[f"{i}.wav"],daemon=True)
-        elif isfile(f"{i}.WAV"): # sometimes wav extention is WAV
-            sound=threading.Thread(target=playsound,args=[f"{i}.WAV"],daemon=True)
-        else:
-            skip=True # ask to skip starting the thread, as no new thread was made
+        elif i=="left" or i=="down":
+            layer=layer-1
+            if layer<1:
+                layer=1
+        elif i=="right" or i=="up":
+            layer=layer+1
+            if layer>12:
+                layer=12
+        elif i.startswith("f") and not i=="f":
+            skip=True
+            f=i[1:]
+            layer=int(f)
+        
+        if i=="up" or i=="down" or i=="left" or i=="right" or i=="pause" or i=="break" or i=="insert" or i=="delete" or i=="escape":
+            skip=True
         
         # sound.setDaemon(True) # to make it kill itself when the program closes. # already set in definition
         if not skip:
