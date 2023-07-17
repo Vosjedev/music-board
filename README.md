@@ -14,4 +14,6 @@ We are now working on beta-0.0.3
 Dev branch todolist (sorted priority high->low)
  - [ ] scripting language
  - [ ] script playback
- - [ ] record to script
+ - [ ] documentation about the language
+ - [ ] record input to script
+
