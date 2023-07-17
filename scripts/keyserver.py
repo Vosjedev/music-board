@@ -17,6 +17,8 @@ def run():
     from scripts.utils import status, getcredits, applyscreenresize
     from scripts.keyToSample import KeyToSample, KeyToLayer
 
+    applyscreenresize=applyscreenresize()
+    
     try: # import playsound
         from playsound import playsound
     except ModuleNotFoundError:
@@ -58,7 +60,7 @@ def run():
     
     while True:
         
-        applyscreenresize(credits=credits)
+        applyscreenresize.do(credits=credits)
         status(layer)
         
         skip=False # set skip to false

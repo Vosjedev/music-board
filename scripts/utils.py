@@ -22,14 +22,16 @@ def getcredits():
         return credits
 
 # screenresize
-prev_cols=0;prev_lines=0
-def applyscreenresize(credits):
-    cols,lines=os.get_terminal_size() # get termsize
-    if not cols==prev_cols or not lines==prev_lines: # if term resized:
-        os.system("cls" if os.name=='nt' else "clear") # clear the screen
-        print("CREDITS:\n"+credits) # print credits
-        print("press escape twice to exit")
-        prev_cols=cols;prev_lines=lines # store new size
+class applyscreenresize:
+    prev_cols=0;prev_lines=0
+    def do(self,credits):
+        cols,lines=os.get_terminal_size() # get termsize
+        if not cols==self.prev_cols or not lines==self.prev_lines: # if term resized:
+            os.system("cls" if os.name=='nt' else "clear") # clear the screen
+            if not credits==None: # if credits exist
+                print("CREDITS:\n"+credits) # print credits
+            print("press escape twice to exit")
+            self.prev_cols=cols;self.prev_lines=lines # store new size
 
 
 
@@ -39,7 +41,7 @@ folder=os.getcwd()
 def status(layer):
     left=f"layer: {layer}"
     right=f"folder: {folder}"
-    __status(left)
+    __status(left=left,mid='|',right=right)
 
 
 def __status(left='',mid='',right=''):

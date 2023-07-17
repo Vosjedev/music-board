@@ -32,12 +32,11 @@ def KeyToLayer(i,layer):
         layer=layer-1
         if layer<1:
             layer=1
-        return layer
     elif i=="right" or i=="up":
         layer=layer+1
         if layer>12:
             layer=12
-        return layer
     elif i.startswith("f") and not i=="f":
         f=i[1:]
         layer=int(f)
+    return layer
