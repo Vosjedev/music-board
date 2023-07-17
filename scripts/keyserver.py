@@ -12,8 +12,7 @@ Issues:
 
 
 def run():
-    import os,sys,threading
-    from os.path import isfile
+    import os,threading
     from scripts.input import GetKeys
     from scripts.utils import status, getcredits, applyscreenresize
     from scripts.keyToSample import KeyToSample, KeyToLayer
