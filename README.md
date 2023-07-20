@@ -13,7 +13,15 @@ DEVELOPER area
 We are now working on beta-0.0.3
 Dev branch todolist (sorted priority high->low)
  - [ ] scripting language
+   - [x] command parsing and interpretation
+   - [x] basic scripting lang
+     - [x] play notes
+     - [x] wait seconds 
+   - [ ] more advanced scripting lang
+     - [ ] mapping of strings to samples
+     - [ ] sleep using musical notation
+       - [ ] personal note: learn musical notation terms in english
  - [ ] script playback
- - [ ] documentation about the language
+ - [x] documentation about the language
  - [ ] record input to script
 
