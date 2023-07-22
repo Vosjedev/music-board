@@ -57,10 +57,10 @@ def main():
             # """
         )
     parser.add_argument("-f","--file",type=str,metavar="scriptfile",      default=None, help="a file for scripting. See scripting.md for help.")
-    parser.add_argument("-d","--dir", type=str,metavar="sample-directory",default=None, help="Your directory of samples. See samples.md for help")
-    parser.add_argument("-x",         action="store_true",                default=False,help="echo script lines when using --file")
-    parser.add_argument("-q",         action="store_true",                default=False,help="be more silent when using --file")
-    parser.add_argument("-Q",         action="store_true",                default=False,help="be completely silent on stdout when using --file")
+    parser.add_argument("-d","--dir", type=str,metavar="sample-directory",default=None, help="Your directory of samples. See samples.md for help. requered when using --file")
+    parser.add_argument("-x",         action="store_true",                default=False,help="echo script lines when using --file instead of line description (`> play a 1` instead of `playing a/1`)")
+    parser.add_argument("-q",         action="store_true",                default=False,help="use a more silent player for --file. errors wil still print")
+    parser.add_argument("-Q",         action="store_true",                default=False,help="be completely silent on stdout when using --file. errors will still print.")
     
 
     arg=parser.parse_args()

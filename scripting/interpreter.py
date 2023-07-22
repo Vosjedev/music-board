@@ -32,7 +32,7 @@ def printerr(msg,end='\n',flush=True): # print for stderr
 
 def interpret(file,samples,arg):
     
-    def print(msg,end='\n',flush=True):
+    def print(msg,end='\n',flush=True,skipq=False):
         # set print, because python unsets it, because it thinks
         # it is defined, but is is only defined when -Q flag given
         # I wrote this myself, it is not the original function,
@@ -42,9 +42,11 @@ def interpret(file,samples,arg):
         if flush:
             stdout.flush()
         
-    if arg.Q: # if silent on:
-        def print(msg,end='\n',flush=True): # overwrite print function
-            pass # and make it do nothing
+    if arg.Q or arg.q: # if silent on:
+        oldprint=print
+        def print(msg,end='\n',flush=True,skipq=False): # overwrite print function
+            if skipq and not arg.Q: # if it wants to skip -q:
+                oldprint(msg=msg,end=end,flush=flush) # only then print it.
     
     import os,colorama,threading
     colorama.init()
@@ -115,7 +117,7 @@ def interpret(file,samples,arg):
         if arg.x:
             print(f"{prefix}{cnt}/{total} > {line}") # print line if enabled
         elif arg.q: # if almost silent:
-            print(f"action {prefix}{cnt}/{total}, {round(100/(total/cnt))}%\r",end='',flush=True) # print line number, and prepare for overwriting with next line number
+            print(f"action {prefix}{cnt}/{total}, {round(100/(total/cnt))}%\r",end='',flush=True,skipq=True) # print line number, and prepare for overwriting with next line number
         else:
             print(f"{prefix}{cnt}/{total}: ",end='',flush=True) # otherwise only print progress, to add more later
         
