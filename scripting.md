@@ -38,7 +38,6 @@ preparing copy...
 counting lines...
 14
 entering sample directory 'samples/piano/'
-now in /SD/workbench/music-board/samples/piano
 preparing last things...
 starting playback
  1/14: comment
@@ -68,7 +67,7 @@ For those who skipped the above:
 ```shell
 python3 sound-board.py --dir path/to/sample/dir --file path/to/script-file.txt
 ```
-*I recommend still following the instructions, as I will be explaining from the environment we set up there. You can skip the theory, as you already know how to use shell languages.*
+*I recommend still following the instructions if you want to do the exercises, as I will be explaining them from the environment we set up there. You can skip the theory, as you already know how to use shell languages.*
 
 **For everyone again**
 ### play
@@ -85,6 +84,8 @@ The example above will ask to play the sample bound to key B from layer 6.
 The letter is the key you would press to activate the sample. It is therefore also the filename of the sample, minus the extention (.mp3, .wav).
 
 You can also give one argument, but it should be a mapping. See `map` command for more info.
+
+`play` runs `async`, which means it runs in the background, and does not make the interpreter wait for the command to be finished.
 
 Exercise:
 In your example script, reverse the order of the letters, to make the notes go from highest to lowest. Run the script again, using the command I provided earlier.
