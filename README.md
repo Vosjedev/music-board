@@ -18,7 +18,7 @@ Dev branch todolist (sorted priority high->low)
      - [x] play notes
      - [x] wait seconds 
    - [ ] more advanced scripting lang
-     - [ ] mapping of strings to samples
+     - [x] mapping of strings to samples
      - [ ] sleep using musical notation
        - [ ] personal note: learn musical notation terms in english
  - [ ] script playback
