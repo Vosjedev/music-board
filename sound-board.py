@@ -13,8 +13,8 @@ selected.
 
 def main():
     # print("importing scripts...")
-    from scripts import keyserver,client
-    from os.path import isdir
+    from scripts import keyserver
+    from os.path import isdir,isfile
     from os import chdir
     from prompt_toolkit import prompt
     from prompt_toolkit.completion import PathCompleter
@@ -56,12 +56,11 @@ def main():
             # see Samples.md on how to make a sample directory.\n
             # """
         )
-    TypeFile=argparse.FileType(mode="r")
-    parser.add_argument("-f","--file",type=TypeFile,metavar="scriptfile",      default=None, help="a file for scripting. See scripting.md for help.")
-    parser.add_argument("-d","--dir", type=str,     metavar="sample-directory",default=None, help="Your directory of samples. See samples.md for help")
-    parser.add_argument("-x",         action="store_true",                     default=False,help="echo script lines when using --file")
-    parser.add_argument("-q",         action="store_true",                     default=False,help="be more silent when using --file")
-    parser.add_argument("-Q",         action="store_true",                     default=False,help="be completely silent on stdout when using --file")
+    parser.add_argument("-f","--file",type=str,metavar="scriptfile",      default=None, help="a file for scripting. See scripting.md for help.")
+    parser.add_argument("-d","--dir", type=str,metavar="sample-directory",default=None, help="Your directory of samples. See samples.md for help")
+    parser.add_argument("-x",         action="store_true",                default=False,help="echo script lines when using --file")
+    parser.add_argument("-q",         action="store_true",                default=False,help="be more silent when using --file")
+    parser.add_argument("-Q",         action="store_true",                default=False,help="be completely silent on stdout when using --file")
     
 
     arg=parser.parse_args()
@@ -70,7 +69,11 @@ def main():
     else:
         if not isdir(arg.dir):
             print(f"'{arg.dir}': Directory Not Found: Please enter a valid directory.")
-        ScriptInput(arg.file.name,arg.dir,arg)
+            exit(1)
+        if not isfile(arg.file):
+            print(f"'{arg.file}': File Not Found: Please enter a valid filename.")
+            exit(1)
+        ScriptInput(arg.file,arg.dir,arg)
 
 
 

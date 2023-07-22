@@ -84,6 +84,8 @@ The example above will ask to play the sample bound to key B from layer 6.
 
 The letter is the key you would press to activate the sample. It is therefore also the filename of the sample, minus the extention (.mp3, .wav).
 
+You can also give one argument, but it should be a mapping. See `map` command for more info.
+
 Exercise:
 In your example script, reverse the order of the letters, to make the notes go from highest to lowest. Run the script again, using the command I provided earlier.
 
@@ -97,3 +99,26 @@ The example above waits one second.
 waitsec 0.5
 ```
 The example above waits half a second. You could also type `waitsec .5`, that works as well.
+
+### map
+`map` is used to map a word to a sample. It has 3 arguments. These are `key`, `layer`, `sample`.
+
+```shell
+map a3 3 a
+```
+This example maps `a3` to sample a from layer 3.
+After mapping something, you can use the mapping in `play` instead of a key and a layer:
+```shell
+play a3
+```
+will look up the key and layer by searching for alias `a3`.
+This is usefull if you are a muzician, and want to map the names of the notes to the keys you would press in interactive mode.
+
+It is also usefull to map sounds to there keys.
+for example, if a dog barking once is on key f from layer 6, you can use this to map and play a bark:
+```shell
+map bark 6 f
+# ...
+play bark
+# ...
+```
